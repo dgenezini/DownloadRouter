@@ -1,0 +1,31 @@
+﻿{
+  "TeraCopyPath": "C:\\Program Files\\TeraCopy\\TeraCopy.exe",
+
+  "FilesFilter": [
+    "*.mp4",
+    "*.mkv",
+    "*.avi"
+  ],
+
+  "SourcesDirectories": [
+    "D:\\Downloads1",
+    "D:\\Downloads2"
+  ],
+
+  "DestinationMappings": [
+    {
+      "TorrentNameFilter": "Filter1",
+      "DestinationDirectories": [
+        "D:\\Destination1",
+        "D:\\Destination2"
+      ]
+    },
+
+    {
+      "TorrentNameFilter": "Filter2",
+      "DestinationDirectories": [
+        "D:\\Destination2"
+      ]
+    }
+  ]
+}
