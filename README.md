@@ -1,5 +1,5 @@
 # DownloadRouter
-📦 Simple download router to move files after download completed
+📦 Simple download router to move files after download completes
 
 # Configuration
 On Configuration.json file
