@@ -14,7 +14,7 @@
 
   "DestinationMappings": [
     {
-      "TorrentNameFilter": "Filter1",
+      "NameFilter": "Filter1",
       "DestinationDirectories": [
         "D:\\Destination1",
         "D:\\Destination2"
@@ -22,7 +22,7 @@
     },
 
     {
-      "TorrentNameFilter": "Filter2",
+      "NameFilter": "Filter2",
       "DestinationDirectories": [
         "D:\\Destination2"
       ]
