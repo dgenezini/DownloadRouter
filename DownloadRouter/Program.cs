@@ -18,9 +18,6 @@ namespace DownloadRouter
 
         private static void Execute(CmdParams options)
         {
-            Console.WriteLine(options.Path);
-            Console.ReadKey();
-
             var Configurarions = JsonConvert.DeserializeObject<Configurations>(File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Configurations.json")));
 
             if ((!string.IsNullOrEmpty(Configurarions.TeraCopyPath)) &&
@@ -130,6 +127,11 @@ namespace DownloadRouter
                     Console.WriteLine($"Directory does not exists: {options.Path}");
                     Console.ReadLine();
                 }
+            }
+            else
+            {
+                Console.ResetColor();
+                Console.WriteLine($"Directory not mapped: {ParentFolder}");
             }
         }
     }
