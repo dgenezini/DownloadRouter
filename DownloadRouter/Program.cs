@@ -64,9 +64,6 @@ namespace DownloadRouter
 
                                     for (int I = 0; I <= DestinationMapping.DestinationDirectories.Count() - 1; I++)
                                     {
-                                        //Wait for teracopy to open, so it includes the next file in the same window
-                                        System.Threading.Thread.Sleep(5000);
-
                                         string DestinationPath = Path.Combine(DestinationMapping.DestinationDirectories[I], Filename);
 
                                         Console.ForegroundColor = ConsoleColor.Blue;
@@ -74,28 +71,17 @@ namespace DownloadRouter
 
                                         if (!string.IsNullOrEmpty(Configurarions.TeraCopyPath))
                                         {
-                                            if (I == DestinationMapping.DestinationDirectories.Count() - 1) //Move if last destination
-                                            {
-                                                parameters = string.Format("Move \"{0}\" \"{1}\"", SourcePath, DestinationMapping.DestinationDirectories[I]);
-                                            }
-                                            else
-                                            {
-                                                parameters = string.Format("Copy \"{0}\" \"{1}\"", SourcePath, DestinationMapping.DestinationDirectories[I]);
-                                            }
+                                            parameters = string.Format("Copy \"{0}\" \"{1}\"", SourcePath, DestinationMapping.DestinationDirectories[I]);
 
                                             System.Diagnostics.Process.Start(Configurarions.TeraCopyPath, parameters);
                                         }
                                         else
                                         {
-                                            if (I == DestinationMapping.DestinationDirectories.Count() - 1) //Move if last destination
-                                            {
-                                                File.Move(SourcePath, DestinationPath);
-                                            }
-                                            else
-                                            {
-                                                File.Copy(SourcePath, DestinationPath);
-                                            }
+                                            File.Copy(SourcePath, DestinationPath);
                                         }
+
+                                        //Wait for teracopy to open, so it includes the next file in the same window
+                                        System.Threading.Thread.Sleep(5000);
                                     }
                                 }
                                 else
