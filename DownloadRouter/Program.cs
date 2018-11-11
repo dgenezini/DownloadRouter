@@ -28,6 +28,7 @@ namespace DownloadRouter
                 return;
             }
 
+            bool IsFile = File.Exists(options.Path);
             string ParentFolder = new DirectoryInfo(options.Path).Parent.FullName.TrimEnd(Path.AltDirectorySeparatorChar);
 
             IEnumerable<string> SourcesDirectories = Configurarions.SourcesDirectories
@@ -35,13 +36,24 @@ namespace DownloadRouter
 
             if (SourcesDirectories.Contains(ParentFolder))
             {
-                if (Directory.Exists(options.Path))
+                if (IsFile || (Directory.Exists(options.Path)))
                 {
                     List<string> FileEntries = new List<string>();
 
-                    foreach (var filter in Configurarions.FilesFilter)
+                    if (IsFile)
                     {
-                        FileEntries.AddRange(Directory.GetFiles(options.Path, filter, SearchOption.TopDirectoryOnly));
+                        if (Configurarions.FilesFilter.Select(a => $".{a.ToLower()}")
+                            .Any(a => a == Path.GetExtension(options.Path).ToLower()))
+                        {
+                            FileEntries.Add(options.Path);
+                        }
+                    }
+                    else
+                    {
+                        foreach (var filter in Configurarions.FilesFilter)
+                        {
+                            FileEntries.AddRange(Directory.GetFiles(options.Path, $"*.{filter}", SearchOption.TopDirectoryOnly));
+                        }
                     }
 
                     if (FileEntries.Count() > 0)
@@ -53,8 +65,28 @@ namespace DownloadRouter
 
                             try
                             {
-                                var DestinationMapping = Configurarions.DestinationMappings
-                                    .SingleOrDefault(a => SourcePath.Contains(a.NameFilter));
+                                DestinationMapping DestinationMapping = null;
+
+                                if (IsFile)
+                                {
+                                    string FileName = Path.GetFileName(SourcePath);
+
+                                    foreach (var mapping in Configurarions.DestinationMappings
+                                        .Where(a => !string.IsNullOrEmpty(a.NameFilter)))
+                                    {
+                                        if (FileName.Contains(mapping.NameFilter))
+                                        {
+                                            DestinationMapping = mapping;
+
+                                            break;
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    DestinationMapping = Configurarions.DestinationMappings
+                                        .SingleOrDefault(a => SourcePath.Contains(a.PathFilter));
+                                }
 
                                 if (DestinationMapping != null) //Found mapping
                                 {

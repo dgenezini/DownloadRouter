@@ -9,6 +9,7 @@ namespace DownloadRouter
     public class DestinationMapping
     {
         public string NameFilter { get; set; }
+        public string PathFilter { get; set; }
         public List<string> DestinationDirectories { get; set; }
     }
 

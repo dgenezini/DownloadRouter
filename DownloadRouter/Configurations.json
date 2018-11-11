@@ -2,9 +2,9 @@
   "TeraCopyPath": "C:\\Program Files\\TeraCopy\\TeraCopy.exe",
 
   "FilesFilter": [
-    "*.mp4",
-    "*.mkv",
-    "*.avi"
+    "mp4",
+    "mkv",
+    "avi"
   ],
 
   "SourcesDirectories": [
@@ -22,7 +22,7 @@
     },
 
     {
-      "NameFilter": "Filter2",
+      "PathFilter": "Filter2",
       "DestinationDirectories": [
         "D:\\Destination2"
       ]
