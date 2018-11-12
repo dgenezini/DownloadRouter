@@ -11,6 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DownloadRouter.Core\DownloadRouter.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="Configurations.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

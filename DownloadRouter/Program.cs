@@ -1,4 +1,5 @@
 ﻿using CommandLine;
+using DownloadRouter.Core;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -18,138 +19,29 @@ namespace DownloadRouter
 
         private static void Execute(CmdParams options)
         {
-            var Configurarions = JsonConvert.DeserializeObject<Configurations>(File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Configurations.json")));
+            var RouteResults = Router.Route(options.Path);
 
-            if ((!string.IsNullOrEmpty(Configurarions.TeraCopyPath)) &&
-                (!File.Exists(Path.Combine(Configurarions.TeraCopyPath))))
+            bool WaitKey = false;
+
+            foreach(var RouteResult in RouteResults)
             {
-                Console.WriteLine($"TeraCopy not found: {Configurarions.TeraCopyPath}");
-                Console.ReadKey();
-                return;
-            }
-
-            bool IsFile = File.Exists(options.Path);
-            string ParentFolder = new DirectoryInfo(options.Path).Parent.FullName.TrimEnd(Path.AltDirectorySeparatorChar);
-
-            IEnumerable<string> SourcesDirectories = Configurarions.SourcesDirectories
-                .Select(a => a.TrimEnd(Path.AltDirectorySeparatorChar));
-
-            if (SourcesDirectories.Contains(ParentFolder))
-            {
-                if (IsFile || (Directory.Exists(options.Path)))
+                if (!RouteResult.Color.HasValue)
                 {
-                    List<string> FileEntries = new List<string>();
-
-                    if (IsFile)
-                    {
-                        if (Configurarions.FilesFilter.Select(a => $".{a.ToLower()}")
-                            .Any(a => a == Path.GetExtension(options.Path).ToLower()))
-                        {
-                            FileEntries.Add(options.Path);
-                        }
-                    }
-                    else
-                    {
-                        foreach (var filter in Configurarions.FilesFilter)
-                        {
-                            FileEntries.AddRange(Directory.GetFiles(options.Path, $"*.{filter}", SearchOption.TopDirectoryOnly));
-                        }
-                    }
-
-                    if (FileEntries.Count() > 0)
-                    {
-                        foreach (string SourcePath in FileEntries)
-                        {
-                            Console.ResetColor();
-                            Console.WriteLine($"Source: {SourcePath}");
-
-                            try
-                            {
-                                DestinationMapping DestinationMapping = null;
-
-                                if (IsFile)
-                                {
-                                    string FileName = Path.GetFileName(SourcePath);
-
-                                    foreach (var mapping in Configurarions.DestinationMappings
-                                        .Where(a => !string.IsNullOrEmpty(a.NameFilter)))
-                                    {
-                                        if (FileName.Contains(mapping.NameFilter))
-                                        {
-                                            DestinationMapping = mapping;
-
-                                            break;
-                                        }
-                                    }
-                                }
-                                else
-                                {
-                                    DestinationMapping = Configurarions.DestinationMappings
-                                        .SingleOrDefault(a => SourcePath.Contains(a.PathFilter));
-                                }
-
-                                if (DestinationMapping != null) //Found mapping
-                                {
-                                    string parameters;
-
-                                    string Filename = Path.GetFileName(SourcePath);
-
-                                    for (int I = 0; I <= DestinationMapping.DestinationDirectories.Count() - 1; I++)
-                                    {
-                                        string DestinationPath = Path.Combine(DestinationMapping.DestinationDirectories[I], Filename);
-
-                                        Console.ForegroundColor = ConsoleColor.Blue;
-                                        Console.WriteLine($"Destination: {DestinationPath}");
-
-                                        if (!string.IsNullOrEmpty(Configurarions.TeraCopyPath))
-                                        {
-                                            parameters = string.Format("Copy \"{0}\" \"{1}\"", SourcePath, DestinationMapping.DestinationDirectories[I]);
-
-                                            System.Diagnostics.Process.Start(Configurarions.TeraCopyPath, parameters);
-                                        }
-                                        else
-                                        {
-                                            File.Copy(SourcePath, DestinationPath);
-                                        }
-
-                                        //Wait for teracopy to open, so it includes the next file in the same window
-                                        System.Threading.Thread.Sleep(5000);
-                                    }
-                                }
-                                else
-                                {
-                                    Console.ForegroundColor = ConsoleColor.Yellow;
-                                    Console.WriteLine("No mapping defined for the directory");
-                                    Console.ReadLine();
-                                }
-                            }
-                            catch
-                            {
-                                Console.ForegroundColor = ConsoleColor.Red;
-                                Console.WriteLine("Error while moving files");
-                                Console.ReadLine();
-                            }
-                        }
-                    }
-                    else
-                    {
-                        Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.WriteLine($"No files to copy: {options.Path}");
-                        Console.WriteLine($"Filter: {string.Join(';', Configurarions.FilesFilter)}");
-                        Console.ReadLine();
-                    }
+                    Console.ResetColor();
                 }
                 else
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine($"Directory does not exists: {options.Path}");
-                    Console.ReadLine();
+                    WaitKey = true;
+
+                    Console.ForegroundColor = RouteResult.Color.Value;
                 }
+
+                Console.WriteLine(RouteResult.Message);
             }
-            else
+
+            if (WaitKey)
             {
-                Console.ResetColor();
-                Console.WriteLine($"Directory not mapped: {ParentFolder}");
+                Console.ReadKey();
             }
         }
     }
