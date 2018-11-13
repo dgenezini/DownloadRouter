@@ -31,7 +31,10 @@ namespace DownloadRouter.Watcher.Tray
             {
                 foreach (var RouteResult in RouteResults)
                 {
-                    MainForm.Form.notifyIcon1.ShowBalloonTip(0, "Download Router", RouteResult.Message, ToolTipIcon.Info);
+                    if (!RouteResult.Color.HasValue)
+                    {
+                        MainForm.Form.notifyIcon1.ShowBalloonTip(0, "Download Router", RouteResult.Message, ToolTipIcon.Info);
+                    }
                 }
             };
 

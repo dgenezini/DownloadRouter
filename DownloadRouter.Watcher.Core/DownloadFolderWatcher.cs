@@ -24,10 +24,12 @@ namespace DownloadRouter.Watcher.Core
                 _watchers[I] = new FileSystemWatcher();
                 _watchers[I].Path = path[I];
 
-                _watchers[I].NotifyFilter = NotifyFilters.CreationTime;
+                _watchers[I].NotifyFilter = NotifyFilters.CreationTime | 
+                    NotifyFilters.FileName;
                 _watchers[I].Filter = "*.*";
 
                 _watchers[I].Changed += new FileSystemEventHandler(OnChanged);
+                _watchers[I].Renamed += new RenamedEventHandler(OnChanged);
 
                 _watchers[I].EnableRaisingEvents = true;
             }
