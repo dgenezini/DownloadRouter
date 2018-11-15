@@ -78,6 +78,7 @@ namespace DownloadRouter.Core
                                 else
                                 {
                                     DestinationMapping = Configurarions.DestinationMappings
+                                        .Where(a => !string.IsNullOrEmpty(a.PathFilter))
                                         .SingleOrDefault(a => SourcePath.Contains(a.PathFilter));
                                 }
 
