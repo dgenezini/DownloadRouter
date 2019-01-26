@@ -36,8 +36,7 @@ namespace DownloadRouter.Core
 
                     if (IsFile)
                     {
-                        if (Configurarions.FilesFilter.Select(a => $".{a.ToLower()}")
-                            .Any(a => a == Path.GetExtension(path).ToLower()))
+                        if (Configurarions.FilesFilter.Any(a => a.Equals(Path.GetExtension(path), StringComparison.OrdinalIgnoreCase)))
                         {
                             FileEntries.Add(path);
                         }
@@ -50,7 +49,7 @@ namespace DownloadRouter.Core
                         }
                     }
 
-                    if (FileEntries.Count() > 0)
+                    if (FileEntries.Count > 0)
                     {
                         foreach (string SourcePath in FileEntries)
                         {
@@ -88,7 +87,8 @@ namespace DownloadRouter.Core
 
                                     string Filename = Path.GetFileName(SourcePath);
 
-                                    for (int I = 0; I <= DestinationMapping.DestinationDirectories.Count() - 1; I++)
+                                    int destDirCountCache = DestinationMapping.DestinationDirectories.Count - 1;
+                                    for (int I = 0; I <= destDirCountCache; I++)
                                     {
                                         string DestinationPath = Path.Combine(DestinationMapping.DestinationDirectories[I], Filename);
 
@@ -99,14 +99,14 @@ namespace DownloadRouter.Core
                                             parameters = string.Format("Copy \"{0}\" \"{1}\"", SourcePath, DestinationMapping.DestinationDirectories[I]);
 
                                             System.Diagnostics.Process.Start(Configurarions.TeraCopyPath, parameters);
+
+                                            //Wait for teracopy to open, so it includes the next file in the same window
+                                            System.Threading.Thread.Sleep(5000);
                                         }
                                         else
                                         {
                                             File.Copy(SourcePath, DestinationPath);
                                         }
-
-                                        //Wait for teracopy to open, so it includes the next file in the same window
-                                        System.Threading.Thread.Sleep(5000);
                                     }
                                 }
                                 else
