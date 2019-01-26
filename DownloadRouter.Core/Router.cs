@@ -8,16 +8,16 @@ namespace DownloadRouter.Core
 {
     public static class Router
     {
-        public static IEnumerable<RouteResult> Route(string path)
+        public static IEnumerable<RouteResultEventArgs> Route(string path)
         {
-            var routeResults = new List<RouteResult>();
+            var routeResults = new List<RouteResultEventArgs>();
 
             var Configurarions = JsonConvert.DeserializeObject<Configurations>(File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Configurations.json")));
 
             if ((!string.IsNullOrEmpty(Configurarions.TeraCopyPath)) &&
                 (!File.Exists(Path.Combine(Configurarions.TeraCopyPath))))
             {
-                routeResults.Add(new RouteResult() { Color = ConsoleColor.Red, Message = $"TeraCopy not found: {Configurarions.TeraCopyPath}" });
+                routeResults.Add(new RouteResultEventArgs() { Color = ConsoleColor.Red, Message = $"TeraCopy not found: {Configurarions.TeraCopyPath}" });
 
                 return routeResults;
             }
@@ -53,7 +53,7 @@ namespace DownloadRouter.Core
                     {
                         foreach (string SourcePath in FileEntries)
                         {
-                            routeResults.Add(new RouteResult() { Message = $"Source: {SourcePath}" });
+                            routeResults.Add(new RouteResultEventArgs() { Message = $"Source: {SourcePath}" });
 
                             try
                             {
@@ -92,7 +92,7 @@ namespace DownloadRouter.Core
                                     {
                                         string DestinationPath = Path.Combine(DestinationMapping.DestinationDirectories[I], Filename);
 
-                                        routeResults.Add(new RouteResult() { Color = ConsoleColor.Blue, Message = $"Destination: {DestinationPath}" });
+                                        routeResults.Add(new RouteResultEventArgs() { Color = ConsoleColor.Blue, Message = $"Destination: {DestinationPath}" });
 
                                         if (!string.IsNullOrEmpty(Configurarions.TeraCopyPath))
                                         {
@@ -111,28 +111,28 @@ namespace DownloadRouter.Core
                                 }
                                 else
                                 {
-                                    routeResults.Add(new RouteResult() { Color = ConsoleColor.Yellow, Message = "No mapping defined for the directory" });
+                                    routeResults.Add(new RouteResultEventArgs() { Color = ConsoleColor.Yellow, Message = "No mapping defined for the directory" });
                                 }
                             }
                             catch
                             {
-                                routeResults.Add(new RouteResult() { Color = ConsoleColor.Red, Message = "Error while moving files" });
+                                routeResults.Add(new RouteResultEventArgs() { Color = ConsoleColor.Red, Message = "Error while moving files" });
                             }
                         }
                     }
                     else
                     {
-                        routeResults.Add(new RouteResult() { Color = ConsoleColor.Yellow, Message = $"No files to copy: {path}. Filter: {string.Join(";", Configurarions.FilesFilter)}" });
+                        routeResults.Add(new RouteResultEventArgs() { Color = ConsoleColor.Yellow, Message = $"No files to copy: {path}. Filter: {string.Join(";", Configurarions.FilesFilter)}" });
                     }
                 }
                 else
                 {
-                    routeResults.Add(new RouteResult() { Color = ConsoleColor.Red, Message = $"Directory does not exists: {path}" });
+                    routeResults.Add(new RouteResultEventArgs() { Color = ConsoleColor.Red, Message = $"Directory does not exists: {path}" });
                 }
             }
             else
             {
-                routeResults.Add(new RouteResult() { Message = $"Directory not mapped: {ParentFolder}" });
+                routeResults.Add(new RouteResultEventArgs() { Message = $"Directory not mapped: {ParentFolder}" });
             }
 
             return routeResults;

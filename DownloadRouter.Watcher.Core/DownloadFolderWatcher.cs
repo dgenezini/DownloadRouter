@@ -1,4 +1,5 @@
 ﻿using DownloadRouter.Core;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -6,23 +7,21 @@ namespace DownloadRouter.Watcher.Core
 {
     public class DownloadFolderWatcher
     {
-        private FileSystemWatcher[] _watchers;
-        public delegate void OnRouteEvent(IEnumerable<RouteResult> routeResults);
-
-        public OnRouteEvent OnRoute { get; set; }
+        private readonly FileSystemWatcher[] _watchers;
+        public event EventHandler<IEnumerable<RouteResultEventArgs>> OnRoute;
 
         public DownloadFolderWatcher(string[] path)
-        {    
+        {
             _watchers = new FileSystemWatcher[path.Length];
 
             for (int I = 0; I < path.Length; I++)
             {
-                _watchers[I] = new FileSystemWatcher();
-                _watchers[I].Path = path[I];
-
-                _watchers[I].NotifyFilter = NotifyFilters.CreationTime | 
-                    NotifyFilters.FileName;
-                _watchers[I].Filter = "*.*";
+                _watchers[I] = new FileSystemWatcher
+                {
+                    Path = path[I],
+                    NotifyFilter = NotifyFilters.CreationTime | NotifyFilters.FileName,
+                    Filter = "*.*",
+                };
 
                 _watchers[I].Changed += new FileSystemEventHandler(OnChanged);
                 _watchers[I].Renamed += new RenamedEventHandler(OnChanged);
@@ -31,11 +30,6 @@ namespace DownloadRouter.Watcher.Core
             }
         }
 
-        private void OnChanged(object source, FileSystemEventArgs e)
-        {
-            var RouteResults = Router.Route(e.FullPath);
-
-            OnRoute(RouteResults);
-        }
+        private void OnChanged(object source, FileSystemEventArgs e) => OnRoute?.Invoke(this, Router.Route(e.FullPath));
     }
 }
