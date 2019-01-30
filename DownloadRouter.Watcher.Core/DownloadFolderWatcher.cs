@@ -10,10 +10,8 @@ namespace DownloadRouter.Watcher.Core
 {
     public class DownloadFolderWatcher
     {
-        private FileSystemWatcher[] _watchers;
-        public delegate void OnRouteEvent(IEnumerable<RouteResult> routeResults);
-
-        public OnRouteEvent OnRoute { get; set; }
+        private readonly FileSystemWatcher[] _watchers;
+        public event EventHandler<IEnumerable<RouteResultEventArgs>> OnRoute;
 
         public DownloadFolderWatcher(string[] path)
         {    
@@ -39,7 +37,7 @@ namespace DownloadRouter.Watcher.Core
         {
             var RouteResults = Router.Route(e.FullPath);
 
-            OnRoute(RouteResults);
+            OnRoute?.Invoke(this, RouteResults);
         }
     }
 }

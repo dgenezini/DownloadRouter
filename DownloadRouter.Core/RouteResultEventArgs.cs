@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DownloadRouter.Core
 {
-    public class RouteResult
+    public class RouteResultEventArgs: EventArgs
     {
         public ConsoleColor? Color { get; set; }
         public string Message { get; set; }
