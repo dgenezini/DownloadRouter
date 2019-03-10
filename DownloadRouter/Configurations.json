@@ -2,33 +2,187 @@
   "TeraCopyPath": "C:\\Program Files\\TeraCopy\\TeraCopy.exe",
 
   "FilesFilter": [
-    "mp4",
-    "mkv",
-    "avi"
+    ".mp4",
+    ".mkv",
+    ".avi"
   ],
 
   "WatchFolders": [
-    "D:\\Downloads"
+    "D:\\Downloads\\Mega"
   ],
 
   "SourcesDirectories": [
-    "D:\\Downloads1",
-    "D:\\Downloads2"
+    "D:\\Downloads\\Mega",
+    "D:\\Downloads\\Bittorrent",
+    "D:\\Downloads\\Bittorrent\\SeriesWD",
+    "D:\\Downloads\\Bittorrent\\Series Mae"
   ],
 
   "DestinationMappings": [
     {
-      "NameFilter": "Filter1",
+      "NameFilter": "OpEx_",
       "DestinationDirectories": [
-        "D:\\Destination1",
-        "D:\\Destination2"
+        "\\\\192.168.1.1\\Public\\Videos\\One Piece"
       ]
     },
 
     {
-      "PathFilter": "Filter2",
+      "PathFilter": "American.Gods",
       "DestinationDirectories": [
-        "D:\\Destination2"
+        "\\\\192.168.1.1\\Public\\Videos\\Series\\American Gods"
+      ]
+    },
+
+    {
+      "PathFilter": "Westworld",
+      "DestinationDirectories": [
+        "\\\\192.168.1.1\\Public\\Videos\\Series\\Westworld"
+      ]
+    },
+
+    {
+      "PathFilter": "Counterpart",
+      "DestinationDirectories": [
+        "\\\\192.168.1.1\\Public\\Videos\\Series\\Counterpart"
+      ]
+    },
+
+    {
+      "PathFilter": "Modern.Family",
+      "DestinationDirectories": [
+        "\\\\192.168.1.1\\Public\\Videos\\Series\\Modern Family"
+      ]
+    },
+
+    {
+      "PathFilter": "2.Broke.Girls",
+      "DestinationDirectories": [
+        "\\\\192.168.1.1\\Public\\Videos\\Series\\2 Broke Girls"
+      ]
+    },
+
+    {
+      "PathFilter": "Brooklyn.Nine-Nine",
+      "DestinationDirectories": [
+        "\\\\192.168.1.1\\Public\\Videos\\Series\\Brooklyn Nine Nine"
+      ]
+    },
+
+    {
+      "PathFilter": "Chicago.Med",
+      "DestinationDirectories": [
+        "D:\\Downloads\\Bittorrent\\Series Mae",
+        "\\\\192.168.1.1\\Public\\Videos\\Series\\Chicago Med"
+      ]
+    },
+
+    {
+      "PathFilter": "Dr.Ken",
+      "DestinationDirectories": [
+        "\\\\192.168.1.1\\Public\\Videos\\Series\\Dr Ken"
+      ]
+    },
+
+    {
+      "PathFilter": "Chicago.PD",
+      "DestinationDirectories": [
+        "D:\\Downloads\\Bittorrent\\Series Mae",
+        "\\\\192.168.1.1\\Public\\Videos\\Series\\Chicago PD"
+      ]
+    },
+
+    {
+      "PathFilter": "True.Detective",
+      "DestinationDirectories": [
+        "D:\\Downloads\\Bittorrent\\Series Mae",
+        "\\\\192.168.1.1\\Public\\Videos\\Series\\True Detective"
+      ]
+    },
+
+    {
+      "PathFilter": "Chicago.Fire",
+      "DestinationDirectories": [
+        "D:\\Downloads\\Bittorrent\\Series Mae",
+        "\\\\192.168.1.1\\Public\\Videos\\Series\\Chicago Fire"
+      ]
+    },
+
+    {
+      "PathFilter": "Game.of.Thrones",
+      "DestinationDirectories": [
+        "\\\\192.168.1.1\\Public\\Videos\\Series\\Game of Thrones"
+      ]
+    },
+
+    {
+      "PathFilter": "Greys.Anatomy",
+      "DestinationDirectories": [
+        "D:\\Downloads\\Bittorrent\\Series Mae",
+        "\\\\192.168.1.1\\Public\\Videos\\Series\\Greys Anatomy"
+      ]
+    },
+
+    {
+      "PathFilter": "Scandal",
+      "DestinationDirectories": [
+        "D:\\Downloads\\Bittorrent\\Series Mae"
+      ]
+    },
+
+    {
+      "PathFilter": "Homeland",
+      "DestinationDirectories": [
+        "D:\\Downloads\\Bittorrent\\Series Mae"
+      ]
+    },
+
+    {
+      "PathFilter": "Great.Indoors",
+      "DestinationDirectories": [
+        "\\\\192.168.1.1\\Public\\Videos\\Series\\The Great Indoors"
+      ]
+    },
+
+    {
+      "PathFilter": "Last.Man.Standing",
+      "DestinationDirectories": [
+        "\\\\192.168.1.1\\Public\\Videos\\Series\\Last Man Standing"
+      ]
+    },
+
+    {
+      "PathFilter": "Lucky.Man",
+      "DestinationDirectories": [
+        "\\\\192.168.1.1\\Public\\Videos\\Series\\Stan Lee's Lucky Man"
+      ]
+    },
+
+    {
+      "PathFilter": "The.Big.Bang.Theory",
+      "DestinationDirectories": [
+        "\\\\192.168.1.1\\Public\\Videos\\Series\\The Big Bang Theory"
+      ]
+    },
+
+    {
+      "PathFilter": "Blindspot",
+      "DestinationDirectories": [
+        "\\\\192.168.1.1\\Public\\Videos\\Series\\Blindspot"
+      ]
+    },
+
+    {
+      "PathFilter": "Superior.Donuts",
+      "DestinationDirectories": [
+        "\\\\192.168.1.1\\Public\\Videos\\Series\\Superior Donuts"
+      ]
+    },
+
+    {
+      "PathFilter": "Chicago.Justice",
+      "DestinationDirectories": [
+        "D:\\Downloads\\Bittorrent\\Series Mae",
+        "\\\\192.168.1.1\\Public\\Videos\\Series\\Chicago Justice"
       ]
     }
   ]

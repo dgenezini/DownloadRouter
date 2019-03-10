@@ -2,9 +2,9 @@
   "TeraCopyPath": "C:\\Program Files\\TeraCopy\\TeraCopy.exe",
 
   "FilesFilter": [
-    "mp4",
-    "mkv",
-    "avi"
+    ".mp4",
+    ".mkv",
+    ".avi"
   ],
 
   "WatchFolders": [
