@@ -46,7 +46,7 @@ namespace DownloadRouter.Core
                     {
                         foreach (var filter in Configurarions.FilesFilter)
                         {
-                            FileEntries.AddRange(Directory.GetFiles(path, $"*.{filter}", SearchOption.TopDirectoryOnly));
+                            FileEntries.AddRange(Directory.GetFiles(path, $"*{filter}", SearchOption.TopDirectoryOnly));
                         }
                     }
 
