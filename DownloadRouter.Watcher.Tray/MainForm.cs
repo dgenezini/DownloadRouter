@@ -37,6 +37,11 @@ namespace DownloadRouter.Watcher.Tray
             };
         }
 
+        protected override void SetVisibleCore(bool value)
+        {
+            base.SetVisibleCore(false);
+        }
+
         private void closeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Close();
