@@ -1,15 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2016
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29326.143
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DownloadRouter", "DownloadRouter\DownloadRouter.csproj", "{C0B5009F-C6FB-4313-8D96-2F09379F9ED7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DownloadRouter.Watcher.Core", "DownloadRouter.Watcher.Core\DownloadRouter.Watcher.Core.csproj", "{762C7119-9211-498C-A9AE-8FAF525045C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DownloadRouter.Watcher.Tray", "DownloadRouter.Watcher.Tray\DownloadRouter.Watcher.Tray.csproj", "{36E6797F-C5A7-4FB6-8856-5FD32044A327}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DownloadRouter.Core", "DownloadRouter.Core\DownloadRouter.Core.csproj", "{C16B3EB4-6B77-4417-AA41-1EF1740BF3DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DownloadRouter.Core", "DownloadRouter.Core\DownloadRouter.Core.csproj", "{C16B3EB4-6B77-4417-AA41-1EF1740BF3DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DownloadRouter.Watcher.WinService", "DownloadRouter.Watcher.WinService\DownloadRouter.Watcher.WinService.csproj", "{92843F24-F56C-4A4C-9E16-DEDBADCFE6D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DownloadRouter.Watcher.Tray", "DownloadRouter.Watcher.Tray\DownloadRouter.Watcher.Tray.csproj", "{D707C28E-D770-46C3-A3E1-B48099C621F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,14 +27,18 @@ Global
 		{762C7119-9211-498C-A9AE-8FAF525045C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{762C7119-9211-498C-A9AE-8FAF525045C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{762C7119-9211-498C-A9AE-8FAF525045C0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{36E6797F-C5A7-4FB6-8856-5FD32044A327}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{36E6797F-C5A7-4FB6-8856-5FD32044A327}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{36E6797F-C5A7-4FB6-8856-5FD32044A327}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{36E6797F-C5A7-4FB6-8856-5FD32044A327}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C16B3EB4-6B77-4417-AA41-1EF1740BF3DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C16B3EB4-6B77-4417-AA41-1EF1740BF3DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C16B3EB4-6B77-4417-AA41-1EF1740BF3DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C16B3EB4-6B77-4417-AA41-1EF1740BF3DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92843F24-F56C-4A4C-9E16-DEDBADCFE6D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92843F24-F56C-4A4C-9E16-DEDBADCFE6D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92843F24-F56C-4A4C-9E16-DEDBADCFE6D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92843F24-F56C-4A4C-9E16-DEDBADCFE6D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D707C28E-D770-46C3-A3E1-B48099C621F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D707C28E-D770-46C3-A3E1-B48099C621F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D707C28E-D770-46C3-A3E1-B48099C621F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D707C28E-D770-46C3-A3E1-B48099C621F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

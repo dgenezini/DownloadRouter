@@ -22,7 +22,7 @@ namespace DownloadRouter.Watcher.Tray
         {
             InitializeComponent();
 
-            var Configurarions = JsonConvert.DeserializeObject<Configs>(File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Configurations.json")));
+            var Configurarions = JsonConvert.DeserializeObject<Configurations>(File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Configurations.json")));
 
             _DownloadFolderWatcher = new DownloadFolderWatcher(Configurarions.WatchFolders);
             _DownloadFolderWatcher.OnRoute += (sender, routeResults) =>

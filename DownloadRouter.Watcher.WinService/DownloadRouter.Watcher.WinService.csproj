@@ -12,12 +12,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="CommandLineParser" Version="2.3.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="Topshelf" Version="4.2.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DownloadRouter.Core\DownloadRouter.Core.csproj" />
+    <ProjectReference Include="..\DownloadRouter.Watcher.Core\DownloadRouter.Watcher.Core.csproj" />
   </ItemGroup>
 
 </Project>
