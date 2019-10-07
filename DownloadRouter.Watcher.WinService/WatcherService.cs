@@ -1,10 +1,10 @@
 ﻿using DownloadRouter.Core;
 using DownloadRouter.Watcher.Core;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Text.Json;
 
 namespace DownloadRouter.Watcher.WinService
 {
@@ -14,7 +14,7 @@ namespace DownloadRouter.Watcher.WinService
 
         public void Start()
         {
-            var Configurarions = JsonConvert.DeserializeObject<Configurations>(
+            var Configurarions = JsonSerializer.Deserialize<Configurations>(
                 File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, 
                         "Configurations.json")));
 

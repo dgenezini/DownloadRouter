@@ -1,8 +1,8 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.Json;
 
 namespace DownloadRouter.Core
 {
@@ -12,7 +12,7 @@ namespace DownloadRouter.Core
         {
             var routeResults = new List<RouteResultEventArgs>();
 
-            var Configurarions = JsonConvert.DeserializeObject<Configurations>(File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Configurations.json")));
+            var Configurarions = JsonSerializer.Deserialize<Configurations>(File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Configurations.json")));
 
             if ((!string.IsNullOrEmpty(Configurarions.TeraCopyPath)) &&
                 (!File.Exists(Path.Combine(Configurarions.TeraCopyPath))))
