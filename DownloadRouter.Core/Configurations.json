@@ -27,6 +27,27 @@
     },
 
     {
+      "PathFilter": "His.Dark.Materials",
+      "DestinationDirectories": [
+        "\\\\192.168.1.1\\Public\\Videos\\Series\\His Dark Materials"
+      ]
+    },
+
+    {
+      "PathFilter": "Watchmen",
+      "DestinationDirectories": [
+        "\\\\192.168.1.1\\Public\\Videos\\Series\\Watchmen"
+      ]
+    },
+
+    {
+      "PathFilter": "Rick.and.Morty",
+      "DestinationDirectories": [
+        "\\\\192.168.1.1\\Public\\Videos\\Series\\Rick and Morty"
+      ]
+    },
+
+    {
       "PathFilter": "American.Gods",
       "DestinationDirectories": [
         "\\\\192.168.1.1\\Public\\Videos\\Series\\American Gods"

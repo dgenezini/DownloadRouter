@@ -2,9 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DownloadRouter.Watcher.Core
 {
@@ -14,7 +11,7 @@ namespace DownloadRouter.Watcher.Core
         public event EventHandler<IEnumerable<RouteResultEventArgs>> OnRoute;
 
         public DownloadFolderWatcher(string[] path)
-        {    
+        {
             _watchers = new FileSystemWatcher[path.Length];
 
             for (int I = 0; I < path.Length; I++)
@@ -22,7 +19,7 @@ namespace DownloadRouter.Watcher.Core
                 _watchers[I] = new FileSystemWatcher();
                 _watchers[I].Path = path[I];
 
-                _watchers[I].NotifyFilter = NotifyFilters.CreationTime | 
+                _watchers[I].NotifyFilter = NotifyFilters.CreationTime |
                     NotifyFilters.FileName;
                 _watchers[I].Filter = "*.*";
 

@@ -1,15 +1,8 @@
 ﻿using DownloadRouter.Core;
 using DownloadRouter.Watcher.Core;
-using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.Json;
 using System.Windows.Forms;
 
 namespace DownloadRouter.Watcher.Tray
@@ -22,7 +15,7 @@ namespace DownloadRouter.Watcher.Tray
         {
             InitializeComponent();
 
-            var Configurarions = JsonConvert.DeserializeObject<Configurations>(File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Configurations.json")));
+            var Configurarions = JsonSerializer.Deserialize<Configurations>(File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Configurations.json")));
 
             _DownloadFolderWatcher = new DownloadFolderWatcher(Configurarions.WatchFolders);
             _DownloadFolderWatcher.OnRoute += (sender, routeResults) =>

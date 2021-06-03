@@ -1,9 +1,6 @@
 ﻿using CommandLine;
 using DownloadRouter.Core;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 
 namespace DownloadRouter
 {
@@ -22,7 +19,7 @@ namespace DownloadRouter
 
             bool WaitKey = false;
 
-            foreach(var RouteResult in RouteResults)
+            foreach (var RouteResult in RouteResults)
             {
                 if (!RouteResult.Color.HasValue)
                 {
